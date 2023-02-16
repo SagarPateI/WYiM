@@ -1,20 +1,25 @@
 # 🃏 What’s Yours is Mime ♞
 
 ### What’s Yours is Mime (WYiM) is a Top-Down 2D Bullet Hell game built in Unity.
-
 * * *
-
 [![Hits Badge](http://hits.dwyl.com/SagarPateI/WYiM.svg?style=flat)](http://hits.dwyl.com/SagarPateI/WYiM) [![Repo Size Badge](https://img.shields.io/github/repo-size/SagarPateI/WYiM?color=ff69b4)](https://github.com/SagarPateI/WYiM)[![Stars Badge](https://img.shields.io/github/stars/SagarPateI/WYiM?color=yellow)](https://github.com/SagarPateI/WYiM/stargazers)
 
 # 🔽 Download
 
 ### To download the latest version of WYiM, go [**here**](https://github.com/SagarPateI/WYiM/releases/latest) and unzip the folder (Windows, Mac, or Linux) after downloading.
 
-# Premise:
+<table>
+	<tr>
+		<td><img src="https://raw.githubusercontent.com/SagarPateI/WYiM/main/README/walking.gif"></td>
+		<td><img src="https://raw.githubusercontent.com/SagarPateI/WYiM/main/README/pie_throw.gif"></td>
+	</tr>
+</table>
+
+# 📜 Premise:
 
 You play as a court jester. Your mime partner has run away from the castle, since your puppet keeps misplacing their invisible boxes. The castle has gone on lockdown, to prevent anyone else from escaping. In order to rejoin them and renounce your castle life, you need to escape the castle by navigating through guards, intent on stopping you. You can throw pies at the guards and enemies that will prevent them from shooting further projectiles at you. However, there is a limit on how many pies you can have per level, so you need to be clever with how you use them. The enemies can be mobile or stationary. Mobile enemies don’t have unlimited range or much motion and move in set patterns. A level is beat when you successfully make it out a room or area without losing all three hearts. There will be more than one level for you to play through in order to find Mime and rejoin your love.
 
-# Mechanics:
+# 🕹️ Mechanics:
  <ol type="1">
     <li>Three hearts represent lives. Depending on difficulty of level/enemy, half a life or a full life will be removed
         when the player character gets hit by a bullet or projectile.</li>
