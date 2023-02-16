@@ -1,2 +1,71 @@
-# WYiM
-What’s Yours is Mime (WYiM) is a Top-Down 2D Bullet Hell game built in Unity. 
+# 🃏 What’s Yours is Mime ♞
+
+### What’s Yours is Mime (WYiM) is a Top-Down 2D Bullet Hell game built in Unity.
+
+* * *
+
+[![Hits Badge](http://hits.dwyl.com/SagarPateI/WYiM.svg?style=flat)](http://hits.dwyl.com/SagarPateI/WYiM) [![Repo Size Badge](https://img.shields.io/github/repo-size/SagarPateI/WYiM?color=ff69b4)](https://github.com/SagarPateI/WYiM)[![Stars Badge](https://img.shields.io/github/stars/SagarPateI/WYiM?color=yellow)](https://github.com/SagarPateI/WYiM/stargazers)
+
+# 🔽 Download
+
+### To download the latest version of WYiM, go [**here**](https://github.com/SagarPateI/WYiM/releases/latest) and unzip the folder (Windows, Mac, or Linux) after downloading.
+
+# Premise:
+
+You play as a court jester. Your mime partner has run away from the castle, since your puppet keeps misplacing their invisible boxes. The castle has gone on lockdown, to prevent anyone else from escaping. In order to rejoin them and renounce your castle life, you need to escape the castle by navigating through guards, intent on stopping you. You can throw pies at the guards and enemies that will prevent them from shooting further projectiles at you. However, there is a limit on how many pies you can have per level, so you need to be clever with how you use them. The enemies can be mobile or stationary. Mobile enemies don’t have unlimited range or much motion and move in set patterns. A level is beat when you successfully make it out a room or area without losing all three hearts. There will be more than one level for you to play through in order to find Mime and rejoin your love.
+
+# Mechanics:
+ <ol type="1">
+    <li>Three hearts represent lives. Depending on difficulty of level/enemy, half a life or a full life will be removed
+        when the player character gets hit by a bullet or projectile.</li>
+    <li>Single location on the map, more if there is time. The castle will have three levels, at least. More can be
+        added, depending on how the semester pans out.</li>
+    <ol type="a">
+        <li>Each level will have increasing difficulty, with the first one being the easiest and the last one being the
+            hardest.</li>
+        <li>Difficulty will be increased by more enemies or more difficult patterns.</li>
+        <ol type="i">
+            <li>Decreasing the ratio of pies that you have to use to can also be added difficulty, though this would be
+                more so polish.</li>
+        </ol>
+        <li>Pies will generally be 2/3 of the number of enemies and stay fixed relative to the
+            enemy count.</li>
+        <li>Player uses the WASD keys to move around and dodge the projectiles.</li>
+        <ol type="i">
+            <li>Key bind for pie-throwing has not yet been determined.</li>
+            <li>Could be that player clicks to aim to throw.</li>
+        </ol>
+        <li>The level is beat when the player successfully manages to get through all of the projectiles and enemies and
+            makes it to the level exit, without losing all three hearts.</li>
+        <ol type="i">
+            <li>The exit might not be immediately visible if the level is of higher difficulty. This means that there
+                are some patterns that the player must get through first, before they are even able to try leaving the
+                level</li>
+        </ol>
+    </ol>
+    <li>Polish items can include a dash function, powerups, and/or level timers for added difficulty.</li>
+    <ol type="a">
+        <li>Dash function can help Jester move around level faster and dodge projectiles easier. It is a temp dash,
+            where when the key is pressed, Jester moves faster up to 1.5- or 2-times original speed for a short time
+        </li>
+        <li>Powerups would be randomly generated on levels. Jester could pick one up, by avoiding projectiles to move to
+            the location where the pickup shows up. Powerups would give an advantage for a limited time, like ~ 5
+            seconds.</li>
+        <ol type="i">
+            <li>Plus 10 seconds to a timer, if timer functionality is included in levels.</li>
+            <li>Temporary invincibility shield, where Jester can move through attack patterns, without getting damaged
+                by projectiles and losing a heart or half a heart.</li>
+            <li>Shield powerup, where if Jester gets hit, the projectiles break the shield first, before harming Jester.
+                The shield can take 3-5 hits before it breaks completely, and on the next hit, Jester takes damage.</li>
+            <li>Heart powerup to add one heart to the number of hearts Jester has. Doesn’t work to add extra life if
+                Jester already has full hearts (3 hearts).</li>
+        </ol>
+        <li>Level timers would start off with more time on the easier levels. The timer would add a little more
+            difficulty, since the player has to navigate through the projectiles in less time than the timer, so there
+            are two conditions to meet to move on to the next level, instead of just one. For example, the very first
+            easiest level could be on a timer for 1:00 and then the last level could be 0:20.</li>
+    </ol>
+    <li>For harder levels, a pie bomb can be added, to disable multiple enemies at once.</li>
+    <li>If there is enough time, a second location could be added, or simply more levels added to the single location.
+    </li>
+</ol>
