@@ -17,6 +17,9 @@ public class PlayerHealth : MonoBehaviour
     public GameObject playAgainbutton;
     public AudioSource hitSound;
 
+    public Sprite[] hearts_sprite;
+    public Image[] hearts_image;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,11 +80,21 @@ public class PlayerHealth : MonoBehaviour
         {
             if(hp >= healthPerHeart)                    // If the counter is >= health per heart, then assign the max value (2)
             {
-                hearts[i].value = healthPerHeart;      
+                hearts[i].value = healthPerHeart;
+                hearts_image[i].sprite = hearts_sprite[2];
+
             }
             else                                        // Otherwise, assign whatever left in the counter
             {
                 hearts[i].value = hp;
+                if(hearts[i].value == 0)
+                {
+                    hearts_image[i].sprite = hearts_sprite[0];
+                }
+                else
+                {
+                    hearts_image[i].sprite = hearts_sprite[1];
+                }
             }
             if(hp >= 0)                                 //This part is just to prevent the counter to reach below 0
             {    
