@@ -8,6 +8,8 @@
 
 ### To download the latest version of WYiM, go [**here**](https://github.com/SagarPateI/WYiM/releases/latest) and unzip the folder (Windows, Mac, or Linux) after downloading.
 
+# Also, check out our official [**Itch.io**](https://jhaboon.itch.io/wyim)!
+
 <table>
 	<tr>
 		<td><img src="https://raw.githubusercontent.com/SagarPateI/WYiM/main/README/walking.gif"></td>
@@ -73,5 +75,3 @@ You play as a court jester. Your mime partner has run away from the castle, sinc
     <li>If there is enough time, a second location could be added, or simply more levels added to the single location.
     </li>
 </ol>
-
-#### [**Itch.io page**](https://jhaboon.itch.io/wyim)
