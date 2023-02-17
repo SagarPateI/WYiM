@@ -74,5 +74,4 @@ You play as a court jester. Your mime partner has run away from the castle, sinc
     </li>
 </ol>
 
-# Itch.io page:
-#### [**Click here**](https://jhaboon.itch.io/wyim)
+#### [**Itch.io page**](https://jhaboon.itch.io/wyim)
