@@ -4,6 +4,8 @@
 * * *
 [![Hits Badge](http://hits.dwyl.com/SagarPateI/WYiM.svg?style=flat)](http://hits.dwyl.com/SagarPateI/WYiM) [![Repo Size Badge](https://img.shields.io/github/repo-size/SagarPateI/WYiM?color=ff69b4)](https://github.com/SagarPateI/WYiM)[![Stars Badge](https://img.shields.io/github/stars/SagarPateI/WYiM?color=yellow)](https://github.com/SagarPateI/WYiM/stargazers)
 
+## 🎮🌐 <b><a href="https://sagarpatei.github.io/WYiM/">Click here to play</a></b> (currently bugged), No Downloads Required!
+
 # 🔽 Download
 
 ### To download the latest version of WYiM, go [**here**](https://github.com/SagarPateI/WYiM/releases/latest) and unzip the folder (Windows, Mac, or Linux) after downloading.
