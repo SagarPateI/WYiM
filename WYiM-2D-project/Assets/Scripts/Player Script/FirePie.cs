@@ -9,60 +9,55 @@ using System.Threading;
 using UnityEngine;
 using System.Collections.Specialized;
 using System;
+using System.ComponentModel.Design;
 
 public class FirePie : MonoBehaviour
 {
 
     public Transform FirePoint;
-    public Vector3 pieAccuracy = new Vector3(0f,0f,0f);
+
     public float pieForce = 15f;
     public GameObject Pie;
-    public GameObject outerReticle;
-    public GameObject innerReticle;
-    private Vector3 AccuracyScaler = new Vector3(-.05f,-.05f,0f);
-    private Vector3 ZeroVect = new Vector3(0, 0, 0);
-    private Vector3 MaxVect = new Vector3(7, 7, 0);
+    private GameObject outerReticle;
+    private GameObject innerReticle;
+    private bool hit = false;
 
-    public float shootTimer = 3f;
     public float reloadTimer = 1.5f;
     private bool isReloading = false;
+    public int pieNum; //Setting up for pie counter and updating
+    public PauseMenu Pies;
 
     public AudioSource audiothrow;
     public AudioClip pieThrow;
 
+    public Collider2D pieHitbox;
+
+    // Animation triggers
+    public Animator animator;
+
+
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.visible = true;
+        outerReticle = GameObject.Find("outerCrosshair");
+        innerReticle = GameObject.Find("innerCrosshair");
     }
+
     void Update()
     {
-
-        if (Input.GetButton("Fire1") && isReloading == false)
+        pieNum = Pies.getPieNum();
+        if (Input.GetButtonDown("Fire1") && isReloading == false && pieNum > 0)
         {
-            outerReticle.transform.localScale += AccuracyScaler;
-            //shootTimer -= Time.deltaTime;
-            AccuracySlider();
-             
-        }
-
-        if (Input.GetButtonUp("Fire1") && isReloading == false)
-        {
-            if (outerReticle.transform.localScale.x <= innerReticle.transform.localScale.x)
-            {
-                pieAccuracy.x = 0;
-                pieAccuracy.y = 0;
-            } 
-            else
-            {
-               // pieAccuracy= outerReticle.transform.localScale - innerReticle.transform.localScale; 
-            }
-            isReloading = true;
-            shoot();
+            Pies.usePie();
+            animator.SetBool("Throwing", true);
+            StartCoroutine(pieDelay());
             audiothrow.PlayOneShot(pieThrow);
-            
             StartCoroutine(reload());
         }
-
+        if (!Input.GetButtonDown("Fire1"))
+        {
+            animator.SetBool("Throwing", false);
+        }
 
 
     }
@@ -70,38 +65,49 @@ public class FirePie : MonoBehaviour
     {
         isReloading = true;
         UnityEngine.Debug.Log("Reloading...");
-        
+
         yield return new WaitForSeconds(reloadTimer);
-        outerReticle.transform.localScale = MaxVect;
+
         isReloading = false;
         UnityEngine.Debug.Log("\nReloaded");
 
-       
+
     }
-
-
-
-    void AccuracySlider()
+    // Wait for a little bit of time before throwing the pie to sync up the animation to the throw
+    IEnumerator pieDelay()
     {
-        if (outerReticle.transform.localScale.x >= MaxVect.x)
-        {
-            AccuracyScaler *= -1;
-            // outerReticle.transform.localScale += AccuracyScaler;
-        }
-        if (outerReticle.transform.localScale.x <= ZeroVect.x)
-        {
-            AccuracyScaler *= -1;
-            //outerReticle.transform.localScale += AccuracyScaler;
-        }
-        /*
-        if (shootTimer <= 0)
-        {
-            reload();
-            
-
-
-        }*/
+        // disable movement while the player is throwing a pie
+        //GetComponent<PlayerMovement>().enabled = false;
+        yield return new WaitForSecondsRealtime(0.2F);
+        shoot();
+        //GetComponent<PlayerMovement>().enabled = true;
     }
+
+
+    IEnumerator hitMiss()
+    {
+        if (hit == true)
+        {
+            pieHitbox.enabled = true;
+        }
+        else
+        {
+            //pieHitbox.enabled = false; 
+            if (pieHitbox != null)
+            {
+                pieHitbox.enabled = false;
+            }
+        }
+
+        yield return new WaitForSeconds(reloadTimer);
+        //pieHitbox.enabled = false; 
+        if (pieHitbox != null)
+        {
+            pieHitbox.enabled = false;
+        }
+
+    }
+
 
     void shoot()
     {
@@ -109,13 +115,24 @@ public class FirePie : MonoBehaviour
         GameObject piePrefab = Instantiate(Pie, FirePoint.position, FirePoint.rotation);
 
         Rigidbody2D rb = piePrefab.GetComponent<Rigidbody2D>();
-        pieAccuracy.x = Mathf.Abs(pieAccuracy.x);
-        pieAccuracy.y = Mathf.Abs(pieAccuracy.y);
-       
+        pieHitbox = piePrefab.GetComponent<Collider2D>();
+        pieHitbox.enabled = false;
+
+
+        if (Mathf.Abs(innerReticle.transform.position.x) - Mathf.Abs(outerReticle.transform.position.x) <= outerReticle.transform.localScale.x && Mathf.Abs(innerReticle.transform.position.y) - Mathf.Abs(outerReticle.transform.position.y) <= outerReticle.transform.localScale.y)
+        {
+            hit = true;
+            UnityEngine.Debug.Log("hit!!!");
+        }
+        else
+        {
+            hit = false;
+            UnityEngine.Debug.Log("Miss!!!");
+        }
+        StartCoroutine(hitMiss());
+
+
         rb.AddForce(FirePoint.up * pieForce, ForceMode2D.Impulse);
         UnityEngine.Debug.Log("Shooting");
-
-        //pieForce = 0;
-
     }
 }

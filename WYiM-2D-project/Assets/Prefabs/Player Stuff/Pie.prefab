@@ -136,3 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d20c87098ded8346b4724ca8fee8e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  innerCrosshair: {fileID: 0}
+  pieHitbox: {fileID: 8294720128003976794}

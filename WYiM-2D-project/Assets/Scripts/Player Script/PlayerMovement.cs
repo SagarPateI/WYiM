@@ -16,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private float verticalMovement = 0f;                          // Vertical movement (1 for up/W and -1 for down/S)
 
     // Dash/Roll stuffs (a little bit lazy to comment them)
-    private float dash_time = 0.1f;                             
-    private float dash_power = 2f;
+    private float dash_time = 0.1f;
+    [SerializeField] private float dash_power = 2f;
     private float dash_cd;
     private float dash_cd_time = 1f;
     private bool is_dash_cd = false;
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audio = GetComponent<AudioSource>();
-        dash_image_cover.color = new Color(0,0,0,0);
+        dash_image_cover.color = new Color(0, 0, 0, 0);
         dash_cd = dash_cd_time;
     }
 
@@ -65,20 +65,20 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
             is_dash_cd = true;
-            dash_image_cover.color = new Color(0,0,0,1);
-            dash_text.text = (Mathf.RoundToInt(dash_cd*10)/10).ToString();
+            dash_image_cover.color = new Color(0, 0, 0, 1);
+            dash_text.text = (Mathf.RoundToInt(dash_cd * 10) / 10).ToString();
         }
-        if(is_dash_cd)
+        if (is_dash_cd)
         {
             dash_cd -= Time.deltaTime;
-            dash_image_cover.color = new Color(0,0,0,1/Time.deltaTime);
-            dash_text.text = (Mathf.RoundToInt(dash_cd*10)/10).ToString();
+            dash_image_cover.color = new Color(0, 0, 0, 1 / Time.deltaTime);
+            dash_text.text = (Mathf.RoundToInt(dash_cd * 10) / 10).ToString();
         }
-        if(dash_cd <= 0f)
+        if (dash_cd <= 0f)
         {
             dash_cd = dash_cd_time;
             is_dash_cd = false;
-            dash_image_cover.color = new Color(0,0,0,0);
+            dash_image_cover.color = new Color(0, 0, 0, 0);
             dash_text.text = "";
         }
 
@@ -90,11 +90,20 @@ public class PlayerMovement : MonoBehaviour
         is_dashing = true;
         move_speed *= dash_power;
         animator.SetBool("Roll", is_dashing);
+        int LayerIgnore = LayerMask.NameToLayer("PlayerRoll");
+        gameObject.layer = LayerIgnore;
 
         yield return new WaitForSeconds(dash_time);
 
         move_speed /= dash_power;
         is_dashing = false;
         animator.SetBool("Roll", is_dashing);
+        int Layerfix = LayerMask.NameToLayer("Player");
+        gameObject.layer = Layerfix;
+    }
+
+    public bool dashCheck()
+    {
+        return is_dashing;
     }
 }

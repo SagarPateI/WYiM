@@ -6,7 +6,7 @@ public class playerSpawn : MonoBehaviour
 {
     private GameObject player;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         player = GameObject.FindWithTag("Player");
         player.GetComponent<Transform>().position = GetComponent<Transform>().position;

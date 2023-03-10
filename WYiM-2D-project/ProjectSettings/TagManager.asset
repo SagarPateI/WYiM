@@ -20,7 +20,7 @@ TagManager:
   - Pie
   - Enemy
   - EnBullets
-  - 
+  - PlayerRoll
   - 
   - 
   - 
@@ -50,6 +50,9 @@ TagManager:
     locked: 0
   - name: Above Ground
     uniqueID: 3612058787
+    locked: 0
+  - name: Aesthetic Walls Layer
+    uniqueID: 172238303
     locked: 0
   - name: Default
     uniqueID: 0

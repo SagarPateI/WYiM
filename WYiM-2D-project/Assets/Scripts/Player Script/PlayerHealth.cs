@@ -10,6 +10,10 @@ public class PlayerHealth : MonoBehaviour
     private int maxHealth;
     private int currentHealth;
 
+    [SerializeField] private PlayerMovement playerMov;
+
+    public bool Dash;
+
     private int healthPerHeart = 2;
 
     public Slider[] hearts;
@@ -21,41 +25,53 @@ public class PlayerHealth : MonoBehaviour
     public Image[] hearts_image;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         maxHealth = PlayerPrefs.GetInt("playerMaxHealth");
         currentHealth = PlayerPrefs.GetInt("playerCurrentHealth");
+        currentHealth = maxHealth;
+        playerMov = GetComponent<PlayerMovement>();
         diedImage.SetActive(false);
         playAgainbutton.SetActive(false);
+        Dash = playerMov.dashCheck();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Dash = playerMov.dashCheck();
         UpdateHealthBar();
     }
 
     public void takeDamage(int damage)                             // Function for taking damage
     {
-        //sound here
-        hitSound.Play();
-        currentHealth -= damage;                                  // Reduce current health
-        PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
-        UpdateHealthBar();
-        if(currentHealth <= 0)
+        if (Dash == false)
         {
-           // If current health is <= 0, then do these
-            diedImage.SetActive(true);
-            playAgainbutton.SetActive(true);
-            Time.timeScale = 0f;
+            //sound here
+            hitSound.Play();
+            currentHealth -= damage;                                  // Reduce current health
+            PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
+            UpdateHealthBar();
+            if (currentHealth <= 0)
+            {
+                // If current health is <= 0, then do these
+                diedImage.SetActive(true);
+                playAgainbutton.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            Debug.Log(damage);
+            Debug.Log(currentHealth);
         }
-        Debug.Log(damage);
-        Debug.Log(currentHealth);
+        else
+        {
+            Debug.Log("Rolling");
+            return;
+        }
     }
 
     public void Heal(int hp)                                        //Function for healing
     {
-        if(currentHealth >= maxHealth)                              // Check if current health >= max health
+        if (currentHealth >= maxHealth)                              // Check if current health >= max health
         {
             currentHealth = maxHealth;                             // If do, then set current health = max health to prevent the current health go over max health
         }
@@ -71,14 +87,14 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHealthBar()                                // Function for update the UI of health bar
     {
         int hp = currentHealth;                          // Counter for current health
-        foreach(Slider heart in hearts)
+        foreach (Slider heart in hearts)
         {
             heart.value = 0;                             // Reset the heart
         }
 
-        for(int i = 0; i < hearts.Length; i++)          //Iterate through the hearts array
+        for (int i = 0; i < hearts.Length; i++)          //Iterate through the hearts array
         {
-            if(hp >= healthPerHeart)                    // If the counter is >= health per heart, then assign the max value (2)
+            if (hp >= healthPerHeart)                    // If the counter is >= health per heart, then assign the max value (2)
             {
                 hearts[i].value = healthPerHeart;
                 hearts_image[i].sprite = hearts_sprite[2];
@@ -87,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
             else                                        // Otherwise, assign whatever left in the counter
             {
                 hearts[i].value = hp;
-                if(hearts[i].value == 0)
+                if (hearts[i].value == 0)
                 {
                     hearts_image[i].sprite = hearts_sprite[0];
                 }
@@ -96,8 +112,8 @@ public class PlayerHealth : MonoBehaviour
                     hearts_image[i].sprite = hearts_sprite[1];
                 }
             }
-            if(hp >= 0)                                 //This part is just to prevent the counter to reach below 0
-            {    
+            if (hp >= 0)                                 //This part is just to prevent the counter to reach below 0
+            {
                 hp -= healthPerHeart;
             }
             else
@@ -105,5 +121,16 @@ public class PlayerHealth : MonoBehaviour
                 hp = 0;
             }
         }
+    }
+
+    public int getHealth()
+    {
+        return currentHealth;
+    }
+
+    public void reset(){
+        currentHealth = maxHealth;
+        playerMov = GetComponent<PlayerMovement>();
+        Dash = playerMov.dashCheck();
     }
 }

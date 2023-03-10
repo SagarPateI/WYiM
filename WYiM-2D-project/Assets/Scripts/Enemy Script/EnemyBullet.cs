@@ -10,7 +10,7 @@ public class EnemyBullet : MonoBehaviour
 
     private int dmg = 1;
 
-    
+
     void OnEnable()
     {
         Invoke("Destroy", bulletTimeOut);
@@ -39,12 +39,13 @@ public class EnemyBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if(hitInfo.CompareTag("Player"))
+        if (hitInfo.CompareTag("Player"))
         {
             hitInfo.GetComponent<PlayerHealth>().takeDamage(dmg);
             Destroy();
         }
-        else if(hitInfo.CompareTag("Wall")){
+        else if (hitInfo.CompareTag("Wall"))
+        {
             Destroy();
         }
     }

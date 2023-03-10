@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class teleporter : MonoBehaviour
 {
     public string levelName;
+    [SerializeField] public ButtonControl buttons;
 
     public void LoadLevel()
     {

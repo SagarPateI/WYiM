@@ -7,7 +7,7 @@ using UnityEngine;
 public class rotationFP : MonoBehaviour
 {
     public Transform tf;
-    
+    private GameObject target;
 
     public float angle;
 
@@ -15,9 +15,13 @@ public class rotationFP : MonoBehaviour
     private Vector2 mousePos;
     private Vector3 AngleFP = new Vector3(0f, 0f, 0f);
     // Start is called before the first frame update
+    void Start()
+    {
+        target = GameObject.Find("innerCrosshair");
+    }
     void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = target.transform.position;
         playerPos = tf.transform.position;
     }
 

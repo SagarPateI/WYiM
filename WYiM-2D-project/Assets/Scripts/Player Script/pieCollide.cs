@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Security;
 using UnityEngine;
 
 public class pieCollide : MonoBehaviour
@@ -12,6 +14,5 @@ public class pieCollide : MonoBehaviour
             //plan on adding different sounds for if it hits an enemy or wall or different enemy types
         }
         Object.Destroy(gameObject);
-        
     }
 }

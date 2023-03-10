@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2289314576419192184}
   - component: {fileID: 2982153654061646265}
   - component: {fileID: 5233906544129354112}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -682908509
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.08695221, g: 1, b: 0, a: 1}
