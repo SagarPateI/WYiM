@@ -17,9 +17,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private int NextPosIndex;
     [SerializeField] private Transform NextPos;
 
-    public float enemyHorizontalMovement = 0f;                        // Horizontal movement (1 for right/A and -1 for left/D)
-    public float enemyVerticalMovement = 0f;
-
     // Animations things
     public Animator animator;
 
@@ -67,13 +64,6 @@ public class EnemyMovement : MonoBehaviour
 
         //ver 2
         MoveEnemyToNextPoint();
-
-        enemyHorizontalMovement = Input.GetAxisRaw("Horizontal");
-        enemyVerticalMovement = Input.GetAxisRaw("Vertical");
-        Vector2 dir = new Vector2(enemyHorizontalMovement, enemyVerticalMovement).normalized;
-        // Animation variable
-        animator.SetFloat("Horizontal", enemyHorizontalMovement);
-        animator.SetFloat("Vertical", enemyVerticalMovement);
     }
 
     //ver 1
@@ -95,10 +85,12 @@ public class EnemyMovement : MonoBehaviour
                 NextPosIndex = 0;
             }
             NextPos = points[NextPosIndex];
+            animator.SetInteger("direction", NextPosIndex);
         }
         else
         {
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, NextPos.position, speed * Time.deltaTime);
+            animator.SetInteger("direction", NextPosIndex);
         }
     }
 }
