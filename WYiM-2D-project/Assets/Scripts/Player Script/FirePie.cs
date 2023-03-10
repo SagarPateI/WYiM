@@ -15,13 +15,15 @@ public class FirePie : MonoBehaviour
 {
 
     public Transform FirePoint;
-
+    private Rigidbody2D rb;
+    
     public float pieForce = 15f;
     public GameObject Pie;
+    public GameObject PieFake;
     private GameObject outerReticle;
     private GameObject innerReticle;
     private bool hit = false;
-
+ 
     public float reloadTimer = 1.5f;
     private bool isReloading = false;
     public int pieNum; //Setting up for pie counter and updating
@@ -29,7 +31,7 @@ public class FirePie : MonoBehaviour
 
     public AudioSource audiothrow;
     public AudioClip pieThrow;
-
+  
     public Collider2D pieHitbox;
 
     // Animation triggers
@@ -41,11 +43,28 @@ public class FirePie : MonoBehaviour
         Cursor.visible = true;
         outerReticle = GameObject.Find("outerCrosshair");
         innerReticle = GameObject.Find("innerCrosshair");
-    }
+       
 
+        
+
+    }
+    void FixedUpdate()
+    {
+        if (Mathf.Abs(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition)) <= 5.2f)
+        {
+
+            hit = true;
+        }
+        else
+        {
+            hit = false;
+        }
+    }
     void Update()
     {
         pieNum = Pies.getPieNum();
+        Pies.getPieNum();
+       // Pies.getPieNum();
         if (Input.GetButtonDown("Fire1") && isReloading == false && pieNum > 0)
         {
             Pies.usePie();
@@ -61,78 +80,59 @@ public class FirePie : MonoBehaviour
 
 
     }
-    IEnumerator reload()
-    {
-        isReloading = true;
-        UnityEngine.Debug.Log("Reloading...");
-
-        yield return new WaitForSeconds(reloadTimer);
-
-        isReloading = false;
-        UnityEngine.Debug.Log("\nReloaded");
-
-
-    }
     // Wait for a little bit of time before throwing the pie to sync up the animation to the throw
     IEnumerator pieDelay()
     {
         // disable movement while the player is throwing a pie
-        //GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
         yield return new WaitForSecondsRealtime(0.2F);
         shoot();
-        //GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
     }
-
-
-    IEnumerator hitMiss()
-    {
-        if (hit == true)
-        {
-            pieHitbox.enabled = true;
-        }
-        else
-        {
-            //pieHitbox.enabled = false; 
-            if (pieHitbox != null)
+            IEnumerator reload()
             {
-                pieHitbox.enabled = false;
+                isReloading = true;
+                UnityEngine.Debug.Log("Reloading...");
+
+                yield return new WaitForSeconds(reloadTimer);
+              
+                isReloading = false;
+                UnityEngine.Debug.Log("\nReloaded");
+
+
             }
-        }
 
-        yield return new WaitForSeconds(reloadTimer);
-        //pieHitbox.enabled = false; 
-        if (pieHitbox != null)
-        {
-            pieHitbox.enabled = false;
-        }
 
-    }
+    
+
+
+
 
 
     void shoot()
     {
-
-        GameObject piePrefab = Instantiate(Pie, FirePoint.position, FirePoint.rotation);
-
-        Rigidbody2D rb = piePrefab.GetComponent<Rigidbody2D>();
-        pieHitbox = piePrefab.GetComponent<Collider2D>();
-        pieHitbox.enabled = false;
+        UnityEngine.Debug.Log(innerReticle.transform.localPosition);
+        
+        UnityEngine.Debug.Log(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition));
 
 
-        if (Mathf.Abs(innerReticle.transform.position.x) - Mathf.Abs(outerReticle.transform.position.x) <= outerReticle.transform.localScale.x && Mathf.Abs(innerReticle.transform.position.y) - Mathf.Abs(outerReticle.transform.position.y) <= outerReticle.transform.localScale.y)
+        if (hit == true)
         {
-            hit = true;
+            
+            GameObject piePrefab = Instantiate(Pie, FirePoint.position, FirePoint.rotation);
+            rb = piePrefab.GetComponent<Rigidbody2D>();
             UnityEngine.Debug.Log("hit!!!");
         }
-        else
+        if(hit== false) 
         {
-            hit = false;
+            GameObject piePrefab = Instantiate(PieFake, FirePoint.position, FirePoint.rotation);
+
+            rb = piePrefab.GetComponent<Rigidbody2D>();
             UnityEngine.Debug.Log("Miss!!!");
         }
-        StartCoroutine(hitMiss());
-
-
+        
         rb.AddForce(FirePoint.up * pieForce, ForceMode2D.Impulse);
         UnityEngine.Debug.Log("Shooting");
-    }
+    }      
+        
 }

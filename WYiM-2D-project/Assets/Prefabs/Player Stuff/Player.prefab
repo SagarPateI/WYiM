@@ -148,7 +148,8 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44d8793c171d48541ad2e4f9289ad694, type: 2}
-  m_sharedMaterial: {fileID: -14722697933821218, guid: 44d8793c171d48541ad2e4f9289ad694, type: 2}
+  m_sharedMaterial: {fileID: -14722697933821218, guid: 44d8793c171d48541ad2e4f9289ad694,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -392,12 +393,14 @@ MonoBehaviour:
   FirePoint: {fileID: 7193925170689789429}
   pieForce: 10
   Pie: {fileID: 7681691427332296282, guid: 23e6002c711164648bdeb8ce2fc624aa, type: 3}
+  PieFake: {fileID: 8949777839596719702, guid: 310218f7a4d68454f96d9c8112157d1d, type: 3}
   reloadTimer: 1.5
   pieNum: 6
   Pies: {fileID: 0}
   audiothrow: {fileID: 2211769020110666020}
   pieThrow: {fileID: 8300000, guid: 806c6dafd44ab6a459e4c87f0f03117d, type: 3}
-  pieHitbox: {fileID: 8294720128003976794, guid: 23e6002c711164648bdeb8ce2fc624aa, type: 3}
+  pieHitbox: {fileID: 8294720128003976794, guid: 23e6002c711164648bdeb8ce2fc624aa,
+    type: 3}
   animator: {fileID: 1011375829892234873}
 --- !u!114 &623834030274260089
 MonoBehaviour:
@@ -1506,7 +1509,8 @@ MonoBehaviour:
   m_text: New Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59f6f6be6b18ff846af0c99fd3c99318, type: 2}
-  m_sharedMaterial: {fileID: -6908083058336323587, guid: 59f6f6be6b18ff846af0c99fd3c99318, type: 2}
+  m_sharedMaterial: {fileID: -6908083058336323587, guid: 59f6f6be6b18ff846af0c99fd3c99318,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1901,7 +1905,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1061286265007631304, guid: 07142c3ab3f0ad34cb7ebc73f1f9e123, type: 3}
+      - m_Target: {fileID: 1061286265007631304, guid: 07142c3ab3f0ad34cb7ebc73f1f9e123,
+          type: 3}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: mainMenu
         m_Mode: 1
@@ -2028,7 +2033,8 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44d8793c171d48541ad2e4f9289ad694, type: 2}
-  m_sharedMaterial: {fileID: -14722697933821218, guid: 44d8793c171d48541ad2e4f9289ad694, type: 2}
+  m_sharedMaterial: {fileID: -14722697933821218, guid: 44d8793c171d48541ad2e4f9289ad694,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

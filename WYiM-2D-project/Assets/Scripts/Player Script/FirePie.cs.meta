@@ -3,7 +3,15 @@ guid: d0b41cff8f404364e8a91a407acccd55
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FirePoint: {instanceID: 0}
+  - Pie: {fileID: 7681691427332296282, guid: 23e6002c711164648bdeb8ce2fc624aa, type: 3}
+  - PieFake: {fileID: 8949777839596719702, guid: 310218f7a4d68454f96d9c8112157d1d, type: 3}
+  - Pies: {instanceID: 0}
+  - audiothrow: {instanceID: 0}
+  - pieThrow: {instanceID: 0}
+  - pieHitbox: {instanceID: 0}
+  - animator: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
