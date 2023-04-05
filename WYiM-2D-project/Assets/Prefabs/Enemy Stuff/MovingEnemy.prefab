@@ -102,6 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4438252058204553498}
+  - component: {fileID: 7088850751542202127}
   m_Layer: 0
   m_Name: MovingEnemy
   m_TagString: Untagged
@@ -129,6 +130,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7088850751542202127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4438252058204553497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cba5201a9968d44fac00c232c4934cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletsAmount: 10
+  startAngle: 0
+  endAngle: 360
+  bulletFireRate: 2
+  throwSound: {fileID: 3362068484552050452}
 --- !u!1 &4438252058317688562
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +306,11 @@ MonoBehaviour:
 --- !u!4 &593897353527470226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3866943655486971779, guid: 56aab453c2362574692a45460e034380, type: 3}
+  m_PrefabInstance: {fileID: 4438252057816528657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3362068484552050452 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -7836366971644006395, guid: 56aab453c2362574692a45460e034380, type: 3}
   m_PrefabInstance: {fileID: 4438252057816528657}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &4969080020015041092 stripped

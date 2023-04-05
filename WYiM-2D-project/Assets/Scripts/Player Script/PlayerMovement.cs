@@ -19,10 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private float dash_time = 0.1f;
     [SerializeField] private float dash_power = 2f;
     private float dash_cd;
-    private float dash_cd_time = 1f;
+    private float dash_cd_time = 4f;
     private bool is_dash_cd = false;
     private bool is_dashing = false;
-    public Image dash_image_cover;
+    public Sprite[] dash_image_cd;
+    public Image dash_image;
     public TMP_Text dash_text;
 
     // Animations things
@@ -33,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         audio = GetComponent<AudioSource>();
-        dash_image_cover.color = new Color(0, 0, 0, 0);
         dash_cd = dash_cd_time;
+        dash_image.sprite = dash_image_cd[4];
     }
 
     // Update is called once per frame
@@ -61,27 +62,26 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", horizontalMovement);
         animator.SetFloat("Vertical", verticalMovement);
 
-        if (Input.GetKeyDown(KeyCode.E) && (Mathf.Abs(horizontalMovement) > 0 || Mathf.Abs(verticalMovement) > 0) && !is_dashing && !is_dash_cd)
+        if (Input.GetKeyDown(KeyCode.E) && (Mathf.Abs(horizontalMovement) > 0 || Mathf.Abs(verticalMovement) > 0) && !is_dashing && !is_dash_cd) // Dash stuff
         {
             StartCoroutine(Dash());
             is_dash_cd = true;
-            dash_image_cover.color = new Color(0, 0, 0, 1);
-            dash_text.text = (Mathf.RoundToInt(dash_cd * 10) / 10).ToString();
+            dash_image.sprite = dash_image_cd[Mathf.RoundToInt(dash_cd * 10) / 10];
+            dash_text.text = ((Mathf.RoundToInt(dash_cd * 10) / 10)+1).ToString();
         }
         if (is_dash_cd)
         {
             dash_cd -= Time.deltaTime;
-            dash_image_cover.color = new Color(0, 0, 0, 1 / Time.deltaTime);
-            dash_text.text = (Mathf.RoundToInt(dash_cd * 10) / 10).ToString();
+            dash_image.sprite = dash_image_cd[Mathf.RoundToInt(dash_cd * 10) / 10];
+            dash_text.text = ((Mathf.RoundToInt(dash_cd * 10) / 10)+1).ToString();
         }
         if (dash_cd <= 0f)
         {
             dash_cd = dash_cd_time;
             is_dash_cd = false;
-            dash_image_cover.color = new Color(0, 0, 0, 0);
+            dash_image.sprite = dash_image_cd[4];
             dash_text.text = "";
         }
-
 
     }
 

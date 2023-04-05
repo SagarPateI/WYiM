@@ -192,6 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 331984646168304771}
   - component: {fileID: 6620854589254493878}
+  - component: {fileID: 7885920506757108818}
   m_Layer: 0
   m_Name: innerCrosshair
   m_TagString: Untagged
@@ -266,6 +267,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7885920506757108818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969545967372971308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec23a559d0d3be8479bc3df5033ad039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {x: 0, y: 1, z: 0}
+  tf: {fileID: 331984646168304771}
+  force: 7
+  lemx: 0
+  lemy: 0
+  movement: {x: 1, y: 1, z: 0}
 --- !u!1 &5565393002594926863
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +412,7 @@ Canvas:
   m_GameObject: {fileID: 5565393002594926863}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 2767610406337160014, guid: 1dab09d77ebe3cd46906c87f5e446a10, type: 3}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -427,7 +446,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1103454510604447926
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,16 +5,19 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
+
 public class PlayerHealth : MonoBehaviour
 {
-    private int maxHealth;
-    private int currentHealth;
+    public int maxHealth;
+    public int currentHealth;
+
+    private Scene scene;
 
     [SerializeField] private PlayerMovement playerMov;
 
     public bool Dash;
 
-    private int healthPerHeart = 2;
+    public int healthPerHeart = 2;
 
     public Slider[] hearts;
     public GameObject diedImage;
@@ -34,10 +37,12 @@ public class PlayerHealth : MonoBehaviour
         diedImage.SetActive(false);
         playAgainbutton.SetActive(false);
         Dash = playerMov.dashCheck();
+        scene = SceneManager.GetActiveScene();
+        Debug.Log(maxHealth);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Dash = playerMov.dashCheck();
         UpdateHealthBar();
@@ -45,46 +50,75 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(int damage)                             // Function for taking damage
     {
-        if (Dash == false)
+        if (scene.name == "Level 1")
         {
-            //sound here
-            hitSound.Play();
-            currentHealth -= damage;                                  // Reduce current health
-            PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
-            UpdateHealthBar();
-            if (currentHealth <= 0)
+            if (Dash == false)
             {
-                // If current health is <= 0, then do these
-                diedImage.SetActive(true);
-                playAgainbutton.SetActive(true);
-                Time.timeScale = 0f;
+                //sound here
+                hitSound.Play();
+                currentHealth -= (damage*2);                                  // Reduce current health
+                PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
+                UpdateHealthBar();
+                if (currentHealth <= 0)
+                {
+                    // If current health is <= 0, then do these
+                    diedImage.SetActive(true);
+                    playAgainbutton.SetActive(true);
+                    Time.timeScale = 0f;
+                }
+                Debug.Log(damage);
+                Debug.Log(currentHealth);
             }
-            Debug.Log(damage);
-            Debug.Log(currentHealth);
+            else
+            {
+               Debug.Log("Rolling");
+                return;
+            }
+
         }
         else
         {
-            Debug.Log("Rolling");
-            return;
+
+            if (Dash == false)
+            {
+                //sound here
+                hitSound.Play();
+                currentHealth -= damage;                                  // Reduce current health
+                PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
+                UpdateHealthBar();
+                if (currentHealth <= 0)
+                {
+                    // If current health is <= 0, then do these
+                    diedImage.SetActive(true);
+                    playAgainbutton.SetActive(true);
+                    Time.timeScale = 0f;
+                }
+                Debug.Log(damage);
+                Debug.Log(currentHealth);
+            }
+            else
+            {
+                Debug.Log("Rolling");
+                return;
+            }
         }
     }
 
-    public void Heal(int hp)                                        //Function for healing
+    public void Heal(int health)                                        //Function for healing
     {
-        if (currentHealth >= maxHealth)                              // Check if current health >= max health
-        {
-            currentHealth = maxHealth;                             // If do, then set current health = max health to prevent the current health go over max health
-        }
-        else
-        {
-            currentHealth += hp;                                    // Otherwise, set current health += the amount of healing
+        //int ch = getHealth();
+        currentHealth += health;
+        if(maxHealth - currentHealth <= 1){
+            currentHealth = maxHealth;
+        }    
+        else{ // Otherwise, set current health += the amount of healing
+            currentHealth += health;
         }
         PlayerPrefs.SetInt("playerCurrentHealth", currentHealth);  // Store current health
         UpdateHealthBar();
-
     }
 
-    void UpdateHealthBar()                                // Function for update the UI of health bar
+    public void UpdateHealthBar()                                // Function for update the UI of health bar
     {
         int hp = currentHealth;                          // Counter for current health
         foreach (Slider heart in hearts)
@@ -126,6 +160,9 @@ public class PlayerHealth : MonoBehaviour
     public int getHealth()
     {
         return currentHealth;
+    }
+    public int getMaxHealth(){
+        return maxHealth;
     }
 
     public void reset(){

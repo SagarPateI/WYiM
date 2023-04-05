@@ -25,8 +25,8 @@ public class ExtraPies : MonoBehaviour
     {
         if(hit.CompareTag("Player"))
         {
-            PieAdder.SetActive(false);
             addFunction.refillPies(num);
+            Destroy(PieAdder);
         }
     }
 }

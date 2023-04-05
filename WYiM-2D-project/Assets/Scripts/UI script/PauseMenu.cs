@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using TMPro; // Adding this so the pie counter won't be so blurry - Sagar
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     //Variables
     public GameObject pauseMenu;
     public GameObject player;
+    public GameObject deathScreen;
+    public GameObject restartButton;
 
+    public FirePie pieCounter;
     public PlayerHealth healthReset;
     public playerSpawn reSpawn;
 
-    public TextMeshProUGUI PieCounter; // Changing this to TMP Input so the text is more crisp - Sagar
+    public TMP_Text PieCounter;
     public int pies;
 
     int health;
@@ -34,39 +37,31 @@ public class PauseMenu : MonoBehaviour
     {
         health = healthReset.getHealth();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        { //Pause menu
-            if (isPaused == true)
-            {
+        if(Input.GetKeyDown(KeyCode.Escape)){ //Pause menu
+            if(isPaused == true){
                 Resume();
             }
-            else
-            {
+            else{
                 Pause();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        { //Escape key to return to main title screen
+        if(Input.GetKeyDown(KeyCode.L)){ //Escape key to return to main title screen
             SceneManager.LoadScene("MainTitle");
         }
 
-        if (health <= 0)
-        {
-            PieCounter.text = "";
+        if(health <= 0){
+            PieCounter.text = " ";
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
+        if(Input.GetKeyDown(KeyCode.K)){
             DeathScreen();
         }
 
-        pies = getPieNum();
         PiesCounter();
     }
 
-    public void Resume()
-    { //Resume game components
+    public void Resume(){ //Resume game components
         pauseMenu.SetActive(false);
         isPaused = false;
 
@@ -74,8 +69,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Pause()
-    { //Pause Components
+    public void Pause(){ //Pause Components
         pauseMenu.SetActive(true);
         isPaused = true;
 
@@ -83,46 +77,40 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void DeathScreen()
-    {//Management for Resetting to beginning
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    public void DeathScreen(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
 
-    public void Quit()
-    { //Quits game
+
+    public void Quit(){ //Quits game
         Application.Quit();
     }
 
-    public void mainMenu()
-    { //Management for returning title screen
+    public void mainMenu(){ //Management for returning title screen
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainTitle");
     }
 
-    public int usePie()
-    {
-        return pies--;
-    }
-
-    public void PiesCounter()
-    { //Pie Counter manager
+    public void PiesCounter(){ //Pie Counter manager
         PieCounter.text = "Pies: " + pies.ToString();
     }
 
-    public void refillPies(int num)
-    {
-        pies += num;
-    }
-
-    public bool getPaused()
-    {
+    public bool getPaused(){
         return isPaused;
     }
 
-    public int getPieNum()
-    {
-        //Debug.Log(pies);
+    public int getPieNum(){
         return pies;
+    }
+
+    public void usePie(){
+        pies--;
+        Debug.Log("Pie Used" + pies);
+    }
+
+    public void refillPies(int add){
+        pies += add;
+        Debug.Log("Number of Pies Added: " + add);
     }
 }

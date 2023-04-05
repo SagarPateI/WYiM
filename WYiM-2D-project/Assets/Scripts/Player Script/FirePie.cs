@@ -16,12 +16,14 @@ public class FirePie : MonoBehaviour
 
     public Transform FirePoint;
     private Rigidbody2D rb;
-    
+
+   
     public float pieForce = 15f;
     public GameObject Pie;
     public GameObject PieFake;
     private GameObject outerReticle;
     private GameObject innerReticle;
+    private Renderer crossRender;
     private bool hit = false;
  
     public float reloadTimer = 1.5f;
@@ -43,14 +45,17 @@ public class FirePie : MonoBehaviour
         Cursor.visible = true;
         outerReticle = GameObject.Find("outerCrosshair");
         innerReticle = GameObject.Find("innerCrosshair");
-       
 
-        
+        crossRender = outerReticle.GetComponent<Renderer>();
+
 
     }
+    
+    
     void FixedUpdate()
     {
-        if (Mathf.Abs(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition)) <= 5.2f)
+
+        if (Mathf.Abs(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition)) <= .9f)
         {
 
             hit = true;
@@ -59,12 +64,7 @@ public class FirePie : MonoBehaviour
         {
             hit = false;
         }
-    }
-    void Update()
-    {
         pieNum = Pies.getPieNum();
-        Pies.getPieNum();
-       // Pies.getPieNum();
         if (Input.GetButtonDown("Fire1") && isReloading == false && pieNum > 0)
         {
             Pies.usePie();
@@ -102,19 +102,12 @@ public class FirePie : MonoBehaviour
 
             }
 
-
-    
-
-
-
-
-
     void shoot()
     {
         UnityEngine.Debug.Log(innerReticle.transform.localPosition);
         
         UnityEngine.Debug.Log(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition));
-
+        StartCoroutine(colorSwitch());
 
         if (hit == true)
         {
@@ -125,6 +118,7 @@ public class FirePie : MonoBehaviour
         }
         if(hit== false) 
         {
+            crossRender.material.SetColor("_Color", Color.red);
             GameObject piePrefab = Instantiate(PieFake, FirePoint.position, FirePoint.rotation);
 
             rb = piePrefab.GetComponent<Rigidbody2D>();
@@ -133,6 +127,24 @@ public class FirePie : MonoBehaviour
         
         rb.AddForce(FirePoint.up * pieForce, ForceMode2D.Impulse);
         UnityEngine.Debug.Log("Shooting");
-    }      
-        
+    }
+    IEnumerator colorSwitch()
+    {
+        if (hit == true)
+        {
+            crossRender.material.SetColor("_Color", Color.green);
+        }
+        if(hit == false)
+        {
+            crossRender.material.SetColor("_Color", Color.red);
+        }
+
+        yield return new WaitForSeconds(reloadTimer);
+
+        crossRender.material.SetColor("_Color", Color.white);
+
+
+
+
+    }
 }

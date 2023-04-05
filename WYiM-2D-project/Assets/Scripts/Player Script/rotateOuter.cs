@@ -24,8 +24,9 @@ public class rotateOuter : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
         offSet = tf.up * .7f;
         pivot = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         phase += 3f * Time.deltaTime;

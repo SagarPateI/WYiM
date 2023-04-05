@@ -36,6 +36,7 @@ public class FireBullet : MonoBehaviour
                 GameObject bul = BulletPool.bulletPoolInstanse.GetBullet();
                 bul.transform.position = transform.position;
                 bul.transform.rotation = transform.rotation;
+                
                 bul.SetActive(true);
                 bul.GetComponent<EnemyBullet>().SetMoveDirection(bulDir);
 
