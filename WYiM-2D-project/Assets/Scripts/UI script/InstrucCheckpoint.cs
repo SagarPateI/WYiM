@@ -12,7 +12,10 @@ public class InstrucCheckpoint : MonoBehaviour
     public GameObject instruc_image;                                         // The canvas where it shows the instruction
     public GameObject instruc_text;                                          // The place where the text appear
     public GameObject[] instruc_video;                                     // Array store the instructio videos(clips) (GameObject)
-    public Canvas canvas;
+    public Canvas canvas;                                                 //The player canvas
+    public GameObject crosshair;
+
+    public float rem;
 
     private GameObject player;                                               // The player itself
 
@@ -26,7 +29,7 @@ public class InstrucCheckpoint : MonoBehaviour
         instruc_text.GetComponent<TMP_Text>().text = instruction[counter];
         instruc_image.SetActive(false);
         instruc_text.SetActive(false);
-        if (instruc_video != null)
+        if (instruc_video != null && PlayerPrefs.GetInt("instructionOption") == 1)
         {
             foreach (GameObject video in instruc_video)
             {
@@ -38,7 +41,7 @@ public class InstrucCheckpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_instruc)                                                       // Check whether is it during instruction
+        if (is_instruc && PlayerPrefs.GetInt("instructionOption") == 1)                                                       // Check whether is it during instruction
         {
             if (Input.GetKeyDown(KeyCode.Space))                              // Take in input
             {
@@ -48,7 +51,9 @@ public class InstrucCheckpoint : MonoBehaviour
             {
                 player.GetComponent<PlayerMovement>().enabled = true;
                 player.GetComponent<FirePie>().enabled = true;
+                player.GetComponent<ShieldPowerUp>().setShields(rem);
                 canvas.enabled = true;
+                crosshair.SetActive(true);
                 instruc_image.SetActive(false);                              // If true, then turn off instruction
                 instruc_text.SetActive(false);
                 if (instruc_video != null)
@@ -85,12 +90,14 @@ public class InstrucCheckpoint : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)                               // Check if the player enter the checkpoint where the instructions at
     {
-        if (hitInfo.CompareTag("Player") && !is_instruc)
+        if (hitInfo.CompareTag("Player") && !is_instruc && PlayerPrefs.GetInt("instructionOption") == 1)
         {
             Debug.Log("player touched this.");
+            rem = hitInfo.GetComponent<ShieldPowerUp>().shieldVal();
             hitInfo.GetComponent<PlayerMovement>().enabled = false;
             hitInfo.GetComponent<FirePie>().enabled = false;
             canvas.enabled = false;
+            crosshair.SetActive(false);
             instruc_image.SetActive(true);
             instruc_text.SetActive(true);
             Time.timeScale = 0f;

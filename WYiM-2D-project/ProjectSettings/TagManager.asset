@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - Enemy
   - Pie
+  - sniper
+  - Light Rays
+  - Instructions
   layers:
   - Default
   - TransparentFX
@@ -48,11 +51,17 @@ TagManager:
   - name: Ground
     uniqueID: 1074207583
     locked: 0
+  - name: Item Particles
+    uniqueID: 2602687439
+    locked: 0
   - name: Above Ground
     uniqueID: 3612058787
     locked: 0
   - name: Aesthetic Walls Layer
     uniqueID: 172238303
+    locked: 0
+  - name: Dust Particles
+    uniqueID: 18915317
     locked: 0
   - name: Default
     uniqueID: 0

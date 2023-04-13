@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     public int pies;
 
     int health;
+    int instructHotKey;
 
     public static bool isPaused = false;
     public float trans = 1f;
@@ -30,11 +31,16 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        PlayerPrefs.SetInt("PieAmmo", pies);
+        instructHotKey = PlayerPrefs.GetInt("instructionOption");
+
+        PieCounter.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        pies = PlayerPrefs.GetInt("PieAmmo");
         health = healthReset.getHealth();
 
         if(Input.GetKeyDown(KeyCode.Escape)){ //Pause menu
@@ -51,11 +57,20 @@ public class PauseMenu : MonoBehaviour
         }
 
         if(health <= 0){
-            PieCounter.text = " ";
+            PieCounter.enabled = false;
         }
 
         if(Input.GetKeyDown(KeyCode.K)){
             DeathScreen();
+        }
+
+        if(Input.GetKeyDown(KeyCode.P)){
+            if(PlayerPrefs.GetInt("instructionOption") == 1){
+                PlayerPrefs.SetInt("instructionOption", 0);
+            }
+            else{
+                PlayerPrefs.SetInt("instructionOption", 1);
+            }
         }
 
         PiesCounter();
@@ -98,19 +113,5 @@ public class PauseMenu : MonoBehaviour
 
     public bool getPaused(){
         return isPaused;
-    }
-
-    public int getPieNum(){
-        return pies;
-    }
-
-    public void usePie(){
-        pies--;
-        Debug.Log("Pie Used" + pies);
-    }
-
-    public void refillPies(int add){
-        pies += add;
-        Debug.Log("Number of Pies Added: " + add);
     }
 }

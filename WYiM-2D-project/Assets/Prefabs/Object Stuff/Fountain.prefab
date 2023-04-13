@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3362315718141609651}
   - component: {fileID: -8264034815143827841}
   - component: {fileID: 8829932683997319181}
+  - component: {fileID: -4052542981455290517}
   m_Layer: 0
   m_Name: Fountain
   m_TagString: Untagged
@@ -105,3 +106,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!111 &-4052542981455290517
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6263156606863391652}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 060d9efbf85a8c84ea02e5d6f037db54, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

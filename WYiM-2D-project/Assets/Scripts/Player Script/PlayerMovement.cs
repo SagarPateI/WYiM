@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalMovement = 0f;                          // Vertical movement (1 for up/W and -1 for down/S)
 
     // Dash/Roll stuffs (a little bit lazy to comment them)
-    private float dash_time = 0.1f;
+    private float dash_time = 0.35f;
     [SerializeField] private float dash_power = 2f;
     private float dash_cd;
     private float dash_cd_time = 4f;
@@ -87,8 +87,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
-        is_dashing = true;
         move_speed *= dash_power;
+        is_dashing = true;
         animator.SetBool("Roll", is_dashing);
         int LayerIgnore = LayerMask.NameToLayer("PlayerRoll");
         gameObject.layer = LayerIgnore;

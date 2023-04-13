@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
-    public static BulletPool bulletPoolInstanse;
+    /*public static BulletPool bulletPoolInstanse;
 
-    [SerializeField] private GameObject pooledBullet;
+    [SerializeField] private GameObject[] pooledBullet;
     private bool notEnoughBulletsInPool = true;
     private List<GameObject> bullets;
 
@@ -20,7 +20,7 @@ public class BulletPool : MonoBehaviour
         bullets = new List<GameObject>();
     }
 
-    public GameObject GetBullet()
+    public GameObject GetBullet(int bullet)
     {
         if (bullets.Count > 0)
         {
@@ -32,11 +32,14 @@ public class BulletPool : MonoBehaviour
         }
         if (notEnoughBulletsInPool)
         {
-            GameObject bul = Instantiate(pooledBullet);
+            GameObject bul = Instantiate(pooledBullet[bullet], transform.position, Quaternion.identity);
+            //pooledBullet.transform.Rotate(0f, 0f, Mathf.Atan2(projectileMoveDirection.y, projectileMoveDirection.x) * Mathf.Rad2Deg);
             bul.SetActive(false);
             bullets.Add(bul);
             return bul;
         }
         return null;
-    }
+    }*/
+
+    public GameObject[] pooledBullet;
 }

@@ -2,18 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
 
     public float TimeLeft;
     public bool TimerOn = false;
-    public Text TimerText;
+    public TMP_Text TimerText;
+    public bool challengeMode;
+
+    public PlayerHealth healthReset;
+
+    int health;
+    int run;
 
     // Start is called before the first frame update
     void Start()
     {
-        TimerOn = true;
+        run = PlayerPrefs.GetInt("GameMode");
+        if(run == 1){
+            TimerOn = true;
+        }
+        else{
+            TimerText.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +41,14 @@ public class TimerScript : MonoBehaviour
                 TimeLeft = 0;
                 TimerOn = false;
                 TimerText.enabled = false;
+                GetComponent<PlayerHealth>().outOfTime();
             }
+        }
+
+        health = healthReset.getHealth();
+
+        if(health <= 0){
+            TimerText.enabled = false;
         }
     }
 

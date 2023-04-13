@@ -14,8 +14,10 @@ public class PlayerHealth : MonoBehaviour
     private Scene scene;
 
     [SerializeField] private PlayerMovement playerMov;
+    [SerializeField] private ShieldPowerUp shields;
 
     public bool Dash;
+    public bool shieldsUp;
 
     public int healthPerHeart = 2;
 
@@ -45,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
     public void Update()
     {
         Dash = playerMov.dashCheck();
+        shieldsUp = GetComponent<ShieldPowerUp>().getShields();
         UpdateHealthBar();
     }
 
@@ -52,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (scene.name == "Level 1")
         {
-            if (Dash == false)
+            if (!Dash && !shieldsUp)
             {
                 //sound here
                 hitSound.Play();
@@ -69,9 +72,12 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log(damage);
                 Debug.Log(currentHealth);
             }
+            else if(!Dash && shieldsUp){ //Case of not rolling, but with shield power up, do damage to shields instead
+                GetComponent<ShieldPowerUp>().decrementShield(damage);
+            }
             else
-            {
-               Debug.Log("Rolling");
+            { //Case of rolling, no damage taken
+                Debug.Log("Rolling");
                 return;
             }
 
@@ -79,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         else
         {
 
-            if (Dash == false)
+            if (!Dash && !shieldsUp)
             {
                 //sound here
                 hitSound.Play();
@@ -96,8 +102,11 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log(damage);
                 Debug.Log(currentHealth);
             }
+            else if(!Dash && shieldsUp){ //Case of not rolling, but with shield power up, do damage to shields instead
+                GetComponent<ShieldPowerUp>().decrementShield(damage);
+            }
             else
-            {
+            { //Case of rolling, no damage taken
                 Debug.Log("Rolling");
                 return;
             }
@@ -106,9 +115,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(int health)                                        //Function for healing
     {
-        //int ch = getHealth();
-        currentHealth += health;
-        if(maxHealth - currentHealth <= 1){
+        if(currentHealth >= 4){
             currentHealth = maxHealth;
         }    
         else{ // Otherwise, set current health += the amount of healing
@@ -161,8 +168,11 @@ public class PlayerHealth : MonoBehaviour
     {
         return currentHealth;
     }
-    public int getMaxHealth(){
-        return maxHealth;
+
+    public void outOfTime(){
+        currentHealth = 0;
+        PlayerPrefs.SetInt("playerCurrentHealth", currentHealth);
+        takeDamage(0);
     }
 
     public void reset(){

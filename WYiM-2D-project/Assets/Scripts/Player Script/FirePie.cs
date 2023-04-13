@@ -29,7 +29,7 @@ public class FirePie : MonoBehaviour
     public float reloadTimer = 1.5f;
     private bool isReloading = false;
     public int pieNum; //Setting up for pie counter and updating
-    public PauseMenu Pies;
+    //public PauseMenu Pies;
 
     public AudioSource audiothrow;
     public AudioClip pieThrow;
@@ -64,10 +64,11 @@ public class FirePie : MonoBehaviour
         {
             hit = false;
         }
-        pieNum = Pies.getPieNum();
+        pieNum = PlayerPrefs.GetInt("PieAmmo");
         if (Input.GetButtonDown("Fire1") && isReloading == false && pieNum > 0)
         {
-            Pies.usePie();
+            pieNum--;
+            PlayerPrefs.SetInt("PieAmmo", pieNum);
             animator.SetBool("Throwing", true);
             StartCoroutine(pieDelay());
             audiothrow.PlayOneShot(pieThrow);

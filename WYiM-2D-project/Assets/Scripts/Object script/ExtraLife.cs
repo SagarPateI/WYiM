@@ -6,12 +6,11 @@ public class ExtraLife : MonoBehaviour
 {
     public GameObject healObject;
     public PlayerHealth AddHealth;
-    int curr, mhp;
 
     // Start is called before the first frame update
     void Start()
     {
-        healObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     // Update is called once per frame
