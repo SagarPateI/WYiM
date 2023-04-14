@@ -119,7 +119,7 @@ MonoBehaviour:
   deathScreen: {fileID: 0}
   restartButton: {fileID: 0}
   pieCounter: {fileID: 590816469013379642, guid: 945c1474720d5d54bb3b1d7458624296, type: 3}
-  healthReset: {fileID: 0}
+  healthReset: {fileID: 7956367334511327232, guid: 945c1474720d5d54bb3b1d7458624296, type: 3}
   reSpawn: {fileID: 0}
   PieCounter: {fileID: 0}
   pies: 0

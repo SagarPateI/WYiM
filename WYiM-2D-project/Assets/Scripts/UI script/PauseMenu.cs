@@ -93,7 +93,10 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void DeathScreen(){
+        player.GetComponent<PlayerHealth>().reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("playerCurrentHealth", PlayerPrefs.GetInt("playerMaxHealth"));
+        PlayerPrefs.SetInt("instructionOption", 1);
         Time.timeScale = 1f;
     }
 
@@ -104,11 +107,11 @@ public class PauseMenu : MonoBehaviour
 
     public void mainMenu(){ //Management for returning title screen
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainTitle");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PiesCounter(){ //Pie Counter manager
-        PieCounter.text = "Pies: " + pies.ToString();
+        PieCounter.text = pies.ToString();
     }
 
     public bool getPaused(){

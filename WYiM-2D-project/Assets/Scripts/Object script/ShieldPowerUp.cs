@@ -22,6 +22,7 @@ public class ShieldPowerUp : MonoBehaviour
         shields.value -= d;
         if(shields.value <= 0){ //Deactivate shield if less than zero (cheekily, this means that the amount of damage that can be sponged is actually 6)
             shieldsUp = false;
+            GetComponent<HUD>().has_shield = false;
         }
     }
 

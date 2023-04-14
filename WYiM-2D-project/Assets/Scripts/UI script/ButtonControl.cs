@@ -15,7 +15,7 @@ public class ButtonControl : MonoBehaviour
 
     public GameObject optionsScreen;
     public Toggle instructToggle;
-    bool optionsClose = false;
+    bool optionsClose = true;
 
     //public TMP_Text title;
 
@@ -32,7 +32,7 @@ public class ButtonControl : MonoBehaviour
 
     public void OnButtonPress()
     {
-        if(instructToggle.isOn){
+        if(optionsClose){
             PlayerPrefs.SetInt("instructionOption", 1);
         }
         else{
@@ -54,7 +54,7 @@ public class ButtonControl : MonoBehaviour
     }
 
     public void challengeMode(){
-        if(instructToggle.isOn){
+        if(optionsClose){
             PlayerPrefs.SetInt("instructionOption", 1);
         }
         else{
@@ -71,8 +71,14 @@ public class ButtonControl : MonoBehaviour
     }
 
     public void options(){
-        optionsScreen.SetActive(true);
-        optionsClose = true;
+        if(!optionsClose){
+            optionsScreen.SetActive(true);
+            optionsClose = true;
+        }
+        else{
+            optionsScreen.SetActive(false);
+            optionsClose = false;
+        }
     }
 
     public void InstructToggle(){

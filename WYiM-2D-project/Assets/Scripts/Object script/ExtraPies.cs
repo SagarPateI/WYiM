@@ -26,7 +26,8 @@ public class ExtraPies : MonoBehaviour
     {
         if(hit.CompareTag("Player"))
         {
-            PlayerPrefs.SetInt("PieAmmo", PlayerPrefs.GetInt("PieAmmo") + num);
+            int numpie = PlayerPrefs.GetInt("PieAmmo") + num;
+            PlayerPrefs.SetInt("PieAmmo", numpie);
             Destroy(gameObject);
         }
     }

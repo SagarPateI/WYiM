@@ -47,12 +47,13 @@ public class FirePie : MonoBehaviour
         innerReticle = GameObject.Find("innerCrosshair");
 
         crossRender = outerReticle.GetComponent<Renderer>();
+        pieNum = PlayerPrefs.GetInt("PieAmmo");
 
 
     }
     
     
-    void FixedUpdate()
+    void Update()
     {
 
         if (Mathf.Abs(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition)) <= .9f)
@@ -65,7 +66,7 @@ public class FirePie : MonoBehaviour
             hit = false;
         }
         pieNum = PlayerPrefs.GetInt("PieAmmo");
-        if (Input.GetButtonDown("Fire1") && isReloading == false && pieNum > 0)
+        if (Input.GetButtonDown("Fire1") && !isReloading && pieNum > 0)
         {
             pieNum--;
             PlayerPrefs.SetInt("PieAmmo", pieNum);
@@ -74,7 +75,7 @@ public class FirePie : MonoBehaviour
             audiothrow.PlayOneShot(pieThrow);
             StartCoroutine(reload());
         }
-        if (!Input.GetButtonDown("Fire1"))
+        else
         {
             animator.SetBool("Throwing", false);
         }
@@ -86,22 +87,24 @@ public class FirePie : MonoBehaviour
     {
         // disable movement while the player is throwing a pie
         GetComponent<PlayerMovement>().enabled = false;
-        yield return new WaitForSecondsRealtime(0.2F);
+        yield return new WaitForSecondsRealtime(0.2f);
         shoot();
         GetComponent<PlayerMovement>().enabled = true;
     }
-            IEnumerator reload()
-            {
-                isReloading = true;
-                UnityEngine.Debug.Log("Reloading...");
 
-                yield return new WaitForSeconds(reloadTimer);
+
+    IEnumerator reload()
+    {
+        isReloading = true;
+        UnityEngine.Debug.Log("Reloading...");
+
+        yield return new WaitForSeconds(reloadTimer);
               
-                isReloading = false;
-                UnityEngine.Debug.Log("\nReloaded");
+        isReloading = false;
+        UnityEngine.Debug.Log("\nReloaded");
 
 
-            }
+    }
 
     void shoot()
     {
@@ -110,14 +113,14 @@ public class FirePie : MonoBehaviour
         UnityEngine.Debug.Log(Vector3.Distance(innerReticle.transform.localPosition, outerReticle.transform.localPosition));
         StartCoroutine(colorSwitch());
 
-        if (hit == true)
+        if (hit)
         {
             
             GameObject piePrefab = Instantiate(Pie, FirePoint.position, FirePoint.rotation);
             rb = piePrefab.GetComponent<Rigidbody2D>();
             UnityEngine.Debug.Log("hit!!!");
         }
-        if(hit== false) 
+        if(!hit) 
         {
             crossRender.material.SetColor("_Color", Color.red);
             GameObject piePrefab = Instantiate(PieFake, FirePoint.position, FirePoint.rotation);
@@ -129,13 +132,15 @@ public class FirePie : MonoBehaviour
         rb.AddForce(FirePoint.up * pieForce, ForceMode2D.Impulse);
         UnityEngine.Debug.Log("Shooting");
     }
+
+
     IEnumerator colorSwitch()
     {
-        if (hit == true)
+        if (hit)
         {
             crossRender.material.SetColor("_Color", Color.green);
         }
-        if(hit == false)
+        if(!hit)
         {
             crossRender.material.SetColor("_Color", Color.red);
         }
@@ -143,9 +148,6 @@ public class FirePie : MonoBehaviour
         yield return new WaitForSeconds(reloadTimer);
 
         crossRender.material.SetColor("_Color", Color.white);
-
-
-
 
     }
 }

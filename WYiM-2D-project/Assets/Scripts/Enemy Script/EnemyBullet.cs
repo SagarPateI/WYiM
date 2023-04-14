@@ -10,17 +10,10 @@ public class EnemyBullet : MonoBehaviour
 
     private int dmg = 1;
 
-
     void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         Invoke("Destroy", bulletTimeOut);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
 
     public void Setup(Vector3 bulletDir)
@@ -51,12 +44,6 @@ public class EnemyBullet : MonoBehaviour
             Destroy();
         }
     }
-
-    /*public void SetMoveDirection(Vector3 dir)
-    {
-        moveDirection = dir;
-        //transform.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(moveDirection));
-    }*/
 
     public static float GetAngleFromVectorFloat(Vector3 dir)
     {

@@ -638,7 +638,7 @@ Tilemap:
       - {fileID: -1405670416, guid: 27e0843dc1d5664419abd8f837124b5d, type: 3}
       - {fileID: 1266680256, guid: 27e0843dc1d5664419abd8f837124b5d, type: 3}
       - {fileID: -114528600, guid: 27e0843dc1d5664419abd8f837124b5d, type: 3}
-      m_AnimationSpeed: 30
+      m_AnimationSpeed: 30.000002
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -999,7 +999,7 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &4852797051284100667
+--- !u!114 &6965973239721372056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     {
         maxHealth = PlayerPrefs.GetInt("playerMaxHealth");
         currentHealth = PlayerPrefs.GetInt("playerCurrentHealth");
-        currentHealth = maxHealth;
+
         playerMov = GetComponent<PlayerMovement>();
         diedImage.SetActive(false);
         playAgainbutton.SetActive(false);

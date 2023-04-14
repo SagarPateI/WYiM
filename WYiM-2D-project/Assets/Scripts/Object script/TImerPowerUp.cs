@@ -5,13 +5,19 @@ using UnityEngine;
 public class TimerPowerUp : MonoBehaviour
 {
 
-    public GameObject timerPU;
     public TimerScript timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        timerPU.SetActive(true);
+        if(PlayerPrefs.GetInt("GameMode") == 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4219379737134541752}
   - component: {fileID: 7518762143682649104}
   - component: {fileID: 3414499347110100015}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 2643255195099911373}
   - component: {fileID: 9082907154271892175}
   - component: {fileID: 7817707496180063494}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow_MovingEnemy
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
@@ -4939,7 +4939,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.46875, y: 0.75}
+    oldSize: {x: 0.75, y: 0.46875}
     newSize: {x: 0.75, y: 0.46875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4962,6 +4962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   bulletTimeOut: 4
+  rb: {fileID: 0}
 --- !u!1 &8409109054065617602
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,7 +4973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190906627926774861}
   - component: {fileID: 6567392346187787543}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
