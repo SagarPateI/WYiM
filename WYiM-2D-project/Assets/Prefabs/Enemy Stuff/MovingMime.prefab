@@ -917,7 +917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8197304060627803110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1061,6 +1061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8197304061367730666}
+  - component: {fileID: 5778429110320386037}
   m_Layer: 9
   m_Name: MovingMime
   m_TagString: Enemy
@@ -1090,6 +1091,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5778429110320386037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197304061367730669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc71a6cc22465740a537eff23831669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  enemy: {fileID: 8197304060585295060}
+  points:
+  - {fileID: 8197304060851625500}
+  - {fileID: 8197304061765120337}
+  - {fileID: 8197304060353839025}
+  - {fileID: 8197304060557017627}
+  - {fileID: 8197304060076335038}
+  - {fileID: 8197304060627803111}
+  NextPosIndex: 0
+  NextPos: {fileID: 0}
+  animator: {fileID: 8197304060585295058}
 --- !u!1 &8197304061589723244
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float verticalMovement = 0f;                          // Vertical movement (1 for up/W and -1 for down/S)
 
     // Dash/Roll stuffs (a little bit lazy to comment them)
-    private float dash_time = 0.32f;
+    private float dash_time = 0.1f;
     [SerializeField] private float dash_power = 2f;
     private float dash_cd;
     private float dash_cd_time = 4f;

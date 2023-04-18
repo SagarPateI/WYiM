@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     public Slider[] hearts;
     public GameObject diedImage;
     public GameObject playAgainbutton;
+    public GameObject MainMenubutton;
+    public GameObject HUD;
     public AudioSource hitSound;
 
     public Sprite[] hearts_sprite;
@@ -38,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
         playerMov = GetComponent<PlayerMovement>();
         diedImage.SetActive(false);
         playAgainbutton.SetActive(false);
+        MainMenubutton.SetActive(false);
         Dash = playerMov.dashCheck();
         scene = SceneManager.GetActiveScene();
         Debug.Log(maxHealth);
@@ -49,6 +52,14 @@ public class PlayerHealth : MonoBehaviour
         Dash = playerMov.dashCheck();
         shieldsUp = GetComponent<ShieldPowerUp>().getShields();
         UpdateHealthBar();
+        if(currentHealth > 0)
+        {
+            HUD.SetActive(true);
+        }
+        else
+        {
+            HUD.SetActive(false);
+        }
     }
 
     public void takeDamage(int damage)                             // Function for taking damage
@@ -67,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
                     // If current health is <= 0, then do these
                     diedImage.SetActive(true);
                     playAgainbutton.SetActive(true);
+                    MainMenubutton.SetActive(true);
                     Time.timeScale = 0f;
                 }
                 Debug.Log(damage);
@@ -97,6 +109,7 @@ public class PlayerHealth : MonoBehaviour
                     // If current health is <= 0, then do these
                     diedImage.SetActive(true);
                     playAgainbutton.SetActive(true);
+                    MainMenubutton.SetActive(true);
                     Time.timeScale = 0f;
                 }
                 Debug.Log(damage);

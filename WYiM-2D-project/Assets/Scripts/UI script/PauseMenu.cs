@@ -53,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.L)){ //Escape key to return to main title screen
-            SceneManager.LoadScene("MainTitle");
+            SceneManager.LoadScene("MainMenu");
         }
 
         if(health <= 0){
@@ -96,7 +96,8 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<PlayerHealth>().reset();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         PlayerPrefs.SetInt("playerCurrentHealth", PlayerPrefs.GetInt("playerMaxHealth"));
-        PlayerPrefs.SetInt("instructionOption", 1);
+        PlayerPrefs.SetInt("instructionOption", 0);
+        player.GetComponent<InsultDiedText>().text_set = false;
         Time.timeScale = 1f;
     }
 

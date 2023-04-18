@@ -46,19 +46,9 @@ public class HUD : MonoBehaviour
             hud_drop = true;
         }
 
-        if(has_clock)
-        {
-            clock.SetActive(true);
-        }
-
         if(has_shield)
         {
             shield.SetActive(true);
-        }
-
-        if(has_bell)
-        {
-            bell.SetActive(true);
         }
 
         if(hud_drop && !has_shield)
@@ -68,4 +58,5 @@ public class HUD : MonoBehaviour
         }
 
     }
+
 }

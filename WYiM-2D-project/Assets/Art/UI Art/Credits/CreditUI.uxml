@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-direction: row-reverse; flex-grow: 1; flex-wrap: wrap; color: rgb(255, 255, 255); font-size: 24px;">
+        <ui:Label text="Press Escape &#10;To Return To Menu" display-tooltip-when-elided="true" name="Text" style="-unity-font: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/Bitmgothic.ttf?fileID=12800000&amp;guid=470d05cffad9c744c9f913c515196abe&amp;type=3#Bitmgothic&apos;); flex-direction: column-reverse; align-items: flex-end; flex-grow: 1; -unity-text-align: lower-right; font-size: 42px; flex-wrap: wrap; margin-right: 1%; margin-bottom: 2%; -unity-font-definition: url(&apos;project://database/Assets/TextMesh%20Pro/Fonts/Bitmgothic%20SDF.asset?fileID=11400000&amp;guid=f0ce35cfa9f96dd46bbf1dd3926c6dfb&amp;type=2#Bitmgothic SDF&apos;); -unity-text-outline-width: 0; -unity-font-style: normal; letter-spacing: 1px;" />
+    </ui:VisualElement>
+</ui:UXML>
