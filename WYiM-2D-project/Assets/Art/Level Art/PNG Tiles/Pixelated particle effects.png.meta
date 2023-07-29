@@ -1483,7 +1483,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Pixelated particle effects_56: -242991822
+      Pixelated particle effects_26: -1128612126
       Pixelated particle effects_15: -201986948
       Pixelated particle effects_29: -2021185664
       Pixelated particle effects_52: 899788419
@@ -1512,7 +1512,7 @@ TextureImporter:
       Pixelated particle effects_35: -1144193365
       Pixelated particle effects_22: -2013653674
       Pixelated particle effects_1: -1966018062
-      Pixelated particle effects_14: -1524013884
+      Pixelated particle effects_4: 1462808311
       Pixelated particle effects_62: 1266680256
       Pixelated particle effects_2: 160422313
       Pixelated particle effects_36: 1904217409
@@ -1521,10 +1521,10 @@ TextureImporter:
       Pixelated particle effects_51: 943766642
       Pixelated particle effects_61: -1405670416
       Pixelated particle effects_31: -1430382328
-      Pixelated particle effects_4: 1462808311
       Pixelated particle effects_9: 1984233967
       Pixelated particle effects_45: -1284419257
       Pixelated particle effects_50: -771064062
+      Pixelated particle effects_14: -1524013884
       Pixelated particle effects_16: -617077992
       Pixelated particle effects_23: 1947624266
       Pixelated particle effects_54: -546722916
@@ -1546,7 +1546,7 @@ TextureImporter:
       Pixelated particle effects_34: 268400510
       Pixelated particle effects_17: -1909279668
       Pixelated particle effects_5: -1160506920
-      Pixelated particle effects_26: -1128612126
+      Pixelated particle effects_56: -242991822
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public Transform[] points;
     [SerializeField] private int NextPosIndex;
     [SerializeField] private Transform NextPos;
+    bool pause = false;
 
     // Animations things
     public Animator animator;
@@ -24,6 +25,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(pause) return;
         MoveEnemyToNextPoint();
     }
 
@@ -39,11 +41,18 @@ public class EnemyMovement : MonoBehaviour
             }
             NextPos = points[NextPosIndex];
             animator.SetInteger("direction", NextPosIndex);
+            StartCoroutine(delay());
         }
         else
         {
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, NextPos.position, speed * Time.deltaTime);
             animator.SetInteger("direction", NextPosIndex);
         }
+    }
+
+    IEnumerator delay(){
+        pause = true;
+        yield return new WaitForSeconds(1f);
+        pause = false;
     }
 }

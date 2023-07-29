@@ -11,13 +11,14 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
-    private Scene scene;
+    public Animator animator;
 
     [SerializeField] private PlayerMovement playerMov;
     [SerializeField] private ShieldPowerUp shields;
 
     public bool Dash;
     public bool shieldsUp;
+    private bool Imm; //Immunity to prevent double hits
 
     public int healthPerHeart = 2;
 
@@ -36,13 +37,12 @@ public class PlayerHealth : MonoBehaviour
     {
         maxHealth = PlayerPrefs.GetInt("playerMaxHealth");
         currentHealth = PlayerPrefs.GetInt("playerCurrentHealth");
-
+        Imm = false;
         playerMov = GetComponent<PlayerMovement>();
         diedImage.SetActive(false);
         playAgainbutton.SetActive(false);
         MainMenubutton.SetActive(false);
         Dash = playerMov.dashCheck();
-        scene = SceneManager.GetActiveScene();
         Debug.Log(maxHealth);
     }
 
@@ -64,66 +64,30 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(int damage)                             // Function for taking damage
     {
-        if (scene.name == "Level 1")
+        if (!Dash && !shieldsUp && !Imm)
         {
-            if (!Dash && !shieldsUp)
+            //sound here
+            hitSound.Play();
+            currentHealth -= (damage);                                  // Reduce current health
+            PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
+            UpdateHealthBar();
+            if (currentHealth <= 0)
             {
-                //sound here
-                hitSound.Play();
-                currentHealth -= (damage*2);                                  // Reduce current health
-                PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
-                UpdateHealthBar();
-                if (currentHealth <= 0)
-                {
-                    // If current health is <= 0, then do these
-                    diedImage.SetActive(true);
-                    playAgainbutton.SetActive(true);
-                    MainMenubutton.SetActive(true);
-                    Time.timeScale = 0f;
-                }
-                Debug.Log(damage);
-                Debug.Log(currentHealth);
-            }
-            else if(!Dash && shieldsUp){ //Case of not rolling, but with shield power up, do damage to shields instead
-                GetComponent<ShieldPowerUp>().decrementShield(damage);
-            }
-            else
-            { //Case of rolling, no damage taken
-                Debug.Log("Rolling");
-                return;
-            }
-
-        }
-        else
-        {
-
-            if (!Dash && !shieldsUp)
-            {
-                //sound here
-                hitSound.Play();
-                currentHealth -= damage;                                  // Reduce current health
-                PlayerPrefs.SetInt("playerCurrentHealth", currentHealth); // Store current health
-                UpdateHealthBar();
-                if (currentHealth <= 0)
-                {
-                    // If current health is <= 0, then do these
-                    diedImage.SetActive(true);
-                    playAgainbutton.SetActive(true);
-                    MainMenubutton.SetActive(true);
-                    Time.timeScale = 0f;
-                }
-                Debug.Log(damage);
-                Debug.Log(currentHealth);
-            }
-            else if(!Dash && shieldsUp){ //Case of not rolling, but with shield power up, do damage to shields instead
-                GetComponent<ShieldPowerUp>().decrementShield(damage);
-            }
-            else
-            { //Case of rolling, no damage taken
-                Debug.Log("Rolling");
-                return;
+                // If current health is <= 0, then do these
+                diedImage.SetActive(true);
+                playAgainbutton.SetActive(true);
+                MainMenubutton.SetActive(true);
+                Time.timeScale = 0f;
             }
         }
+        else if(!Dash && shieldsUp)
+        { //Case of not rolling, but with shield power up, do damage to shields instead
+            GetComponent<ShieldPowerUp>().decrementShield(damage);
+        }
+        GetComponent<Rigidbody2D>().AddForce(Vector2.down * 500f);
+        StartCoroutine(immunity());
+
+        
     }
 
     public void Heal(int health)                                        //Function for healing
@@ -192,5 +156,15 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         playerMov = GetComponent<PlayerMovement>();
         Dash = playerMov.dashCheck();
+    }
+
+    IEnumerator immunity(){
+        Imm = true;
+        animator.SetBool("Immune", Imm);
+
+        yield return new WaitForSeconds(1.5f);
+
+        Imm = false;
+        animator.SetBool("Immune", Imm);
     }
 }

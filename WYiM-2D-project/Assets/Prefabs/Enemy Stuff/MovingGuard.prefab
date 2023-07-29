@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc71a6cc22465740a537eff23831669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2.5
   enemy: {fileID: 593897353527470225}
   points:
   - {fileID: 4438252057822252330}
@@ -283,6 +283,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4438252058204553498}
     m_Modifications:
+    - target: {fileID: -7836366971644006395, guid: 56aab453c2362574692a45460e034380, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4087453763157009027, guid: 56aab453c2362574692a45460e034380, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4087453763157009027, guid: 56aab453c2362574692a45460e034380, type: 3}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 789521209174146226, guid: 56aab453c2362574692a45460e034380, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5

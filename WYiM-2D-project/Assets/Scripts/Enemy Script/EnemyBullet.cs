@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyBullet : MonoBehaviour
 {
@@ -9,6 +10,18 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     private int dmg = 1;
+
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            dmg = 2;
+        }
+        else
+        {
+            dmg = 1;
+        }
+    }
 
     void OnEnable()
     {

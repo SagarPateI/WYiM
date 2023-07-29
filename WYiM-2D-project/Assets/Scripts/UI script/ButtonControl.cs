@@ -31,7 +31,8 @@ public class ButtonControl : MonoBehaviour
             PlayerPrefs.SetInt("instructionOption", 0);
         }
 
-        SceneManager.LoadScene("Pre-Level");
+        //SceneManager.LoadScene("Pre-Level");
+        SceneManager.LoadScene("BeginCutscene");
 
         PlayerPrefs.SetInt("GameMode", 0);
 
@@ -60,6 +61,10 @@ public class ButtonControl : MonoBehaviour
         PlayerPrefs.SetInt("playerMaxHealth", 6);                                         // Set player max health
         PlayerPrefs.SetInt("playerCurrentHealth", PlayerPrefs.GetInt("playerMaxHealth")); // Set player current health to max health
         Time.timeScale = 1f;
+    }
+
+    public void creditsButton(){
+        SceneManager.LoadScene("CreditsScene");
     }
 
     public void InstructToggle(){

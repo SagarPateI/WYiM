@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBullet : MonoBehaviour
 {
     [SerializeField]
-    private int bulletsAmount = 10;
+    private int bulletsAmount = 1;
 
     [SerializeField]
     private float bulletFireRate = 2f;

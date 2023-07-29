@@ -12,6 +12,23 @@ public class MainMenu : MonoBehaviour
     private Vector3[] optionPositions; // Array of the positions of the menu options
     private bool canSelect = true; // Flag to prevent rapid input
 
+    public RectTransform startButton;
+    public RectTransform chalButton;
+    public RectTransform quitButton;
+
+    private float start_y;
+    private float chal_y;
+    private float quit_y;
+
+    private float start_up;
+    private float start_down;
+
+    private float chal_up;
+    private float chal_down;
+
+    private float quit_up;
+    private float quit_down;
+
     void Start()
     {
         // Get the positions of the menu options
@@ -20,14 +37,41 @@ public class MainMenu : MonoBehaviour
         {
             optionPositions[i] = transform.GetChild(i).position;
         }
+
+        start_y = startButton.transform.position.y;
+        chal_y = chalButton.transform.position.y;
+        quit_y = quitButton.transform.position.y;
+
+        start_up = start_y + startButton.sizeDelta.y/2;
+        start_down = start_y - startButton.sizeDelta.y/2;
+
+        chal_up = chal_y + chalButton.sizeDelta.y/2;
+        chal_down = chal_y - chalButton.sizeDelta.y/2;
+
+        quit_up = quit_y + quitButton.sizeDelta.y/2;
+        quit_down = quit_y - quitButton.sizeDelta.y/2;
     }
 
     void Update()
     {
         // Move the selector box based on mouse position
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
-        selectorBox.transform.position = Vector3.MoveTowards(selectorBox.transform.position, mousePos, selectorSpeed * Time.deltaTime);
+        if(Input.mousePosition.y >= start_down && Input.mousePosition.y <= start_up)
+        {
+            selectorBox.transform.position = new Vector2(selectorBox.transform.position.x, start_y);
+        }
+        else if(Input.mousePosition.y >= chal_down && Input.mousePosition.y <= chal_up)
+        {
+            selectorBox.transform.position = new Vector2(selectorBox.transform.position.x, chal_y);
+        }
+        else if(Input.mousePosition.y >= quit_down && Input.mousePosition.y <= quit_up)
+        {
+            selectorBox.transform.position = new Vector2(selectorBox.transform.position.x, quit_y);
+        }
+        else
+        {
+            selectorBox.transform.position = new Vector2(selectorBox.transform.position.x, -1000);
+        }
+        
 
         // Get the index of the currently selected option
         int newSelectedOption = -1;

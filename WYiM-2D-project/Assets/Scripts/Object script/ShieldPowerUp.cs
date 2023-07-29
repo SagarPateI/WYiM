@@ -13,12 +13,14 @@ public class ShieldPowerUp : MonoBehaviour
     int health;
 
     public Slider shields;
+    public AudioSource shieldCrack;
 
     public void maxShield(){//Set shield value when activated
         shields.value = 5;
     }
 
     public void decrementShield(int d){ //Take off amount of equivalent health health from shield when hit
+        shieldCrack.Play();
         shields.value -= d;
         if(shields.value <= 0){ //Deactivate shield if less than zero (cheekily, this means that the amount of damage that can be sponged is actually 6)
             shieldsUp = false;
